@@ -1,70 +1,76 @@
-# 🤖 Bot Telegram – Controle de Meta Diária
+# 🤖 Telegram Bot – Daily Goal Tracker
 
-Bot em Python para **definir, registrar e acompanhar metas diárias diretamente pelo Telegram**, sem dependência de sistemas externos. Ideal para controle simples de produção, atendimentos, vendas ou qualquer contagem diária.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Telegram](https://img.shields.io/badge/Telegram-Bot-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
----
-
-## 📌 Funcionalidades
-
-- ✅ Definir meta diária  
-- ➕ Registrar produção diária (+1)  
-- 📊 Consultar status do dia  
-- 👀 Visualizar meta configurada  
-- 💾 Armazenamento local em arquivo `.json`  
-- 🚀 Simples, leve e fácil de adaptar  
+A Python Telegram bot to **set, track, and monitor daily goals directly through Telegram**, without external integrations.  
+Ideal for productivity tracking, support metrics, sales counts, or any daily activity.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Features
+
+- ✅ Set a daily goal  
+- ➕ Register daily progress (+1)  
+- 📊 View daily status  
+- 👀 Check configured goal  
+- 💾 Local storage using JSON  
+- 🚀 Lightweight and easy to customize  
+
+---
+
+## 🛠️ Tech Stack
 
 - Python 3.10+  
 - python-telegram-bot  
-- JSON  
 - Telegram Bot API  
+- JSON storage  
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 
 ```
-bot-telegram-meta-diaria/
+bot-telegram-daily-goal/
 ├── bot_diario.py
 ├── dados_diarios.json
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## ⚙️ Pré-requisitos
+## ⚙️ Requirements
 
-- Python 3.10 ou superior  
-- Conta no Telegram  
-- Bot criado via **@BotFather**  
+- Python 3.10+  
+- Telegram account  
+- Bot created with **@BotFather**  
 
 ---
 
-## 🚀 Instalação
+## 🚀 Installation
 
-Clone o repositório:
+Clone the repository:
 
 ```bash
-git clone https://github.com/seuusuario/bot-telegram-meta-diaria.git
-cd bot-telegram-meta-diaria
+git clone https://github.com/youruser/bot-telegram-daily-goal.git
+cd bot-telegram-daily-goal
 ```
 
-Instale as dependências:
+Install dependencies:
 
 ```bash
 pip install python-telegram-bot
 ```
 
-Edite o arquivo `bot_diario.py` e informe o token do bot:
+Edit `bot_diario.py` and set your bot token:
 
 ```python
-TOKEN = "SEU_TOKEN_DO_BOT"
+TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
 ```
 
-Execute o bot:
+Run the bot:
 
 ```bash
 python bot_diario.py
@@ -72,45 +78,27 @@ python bot_diario.py
 
 ---
 
-## 📲 Comandos do Bot
+## 📲 Available Commands
 
-| Comando | Função |
-|------|------|
-| /menu | Exibe o menu |
-| /setdiaria 10 | Define a meta diária |
-| /registrar | Soma +1 no dia |
-| /status | Mostra progresso diário |
-| /verdiaria | Mostra a meta atual |
-
----
-
-## 🧠 Exemplo de Uso
-
-```
-/setdiaria 20
-/registrar
-/status
-```
-
-Resposta:
-
-```
-📅 Data: 2026-02-05
-✔️ Feito hoje: 1
-🎯 Meta diária: 20
-```
+| Command | Description |
+|-------|------------|
+| /menu | Show menu |
+| /setdiaria 10 | Set daily goal |
+| /registrar | Add +1 to today |
+| /status | Show today progress |
+| /verdiaria | Show current goal |
 
 ---
 
-## 💾 Armazenamento
+## 💾 Data Storage
 
-Os dados são salvos localmente no arquivo:
+Data is stored locally in:
 
 ```
 dados_diarios.json
 ```
 
-Exemplo:
+Example:
 
 ```json
 {
@@ -123,17 +111,17 @@ Exemplo:
 
 ---
 
-## 🔧 Melhorias Futuras
+## 🧩 Roadmap
 
-- Meta por usuário  
-- Relatório semanal/mensal  
-- Alerta ao atingir a meta  
-- Banco de dados (SQLite/MySQL)  
-- Execução automática no Windows  
-- Hospedagem 24/7  
+- Per-user goals  
+- Weekly/monthly reports  
+- Goal reached notifications  
+- Database support (SQLite/MySQL)  
+- Auto-start on Windows  
+- 24/7 cloud hosting  
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Projeto livre para uso, estudo e adaptação.
+MIT License — free to use, modify, and distribute.
