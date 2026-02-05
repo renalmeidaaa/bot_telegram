@@ -1,0 +1,85 @@
+import json
+from datetime import date
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+TOKEN = "8500632901:AAGdKlDj34Qu47TLUj6Rgh926FRng5izUao"
+
+ARQUIVO = "dados_diarios.json"
+
+def carregar():
+    try:
+        with open(ARQUIVO, "r") as f:
+            return json.load(f)
+    except:
+        return {}
+
+def salvar(dados):
+    with open(ARQUIVO, "w") as f:
+        json.dump(dados, f, indent=2)
+
+# 📋 MENU
+async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "📊 *Controle Diário*\n\n"
+        "/setdiaria 10 → definir meta diária\n"
+        "/registrar → somar +1 hoje\n"
+        "/status → ver andamento do dia\n"
+        "/verdiaria → ver meta atual",
+        parse_mode="Markdown"
+    )
+
+# 🎯 DEFINIR META
+async def setdiaria(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Use: /setdiaria 10")
+        return
+
+    try:
+        meta = int(context.args[0])
+    except:
+        await update.message.reply_text("A meta precisa ser um número.")
+        return
+
+    dados = carregar()
+    dados["meta"] = meta
+    salvar(dados)
+
+    await update.message.reply_text(f"✅ Meta diária definida: {meta}")
+
+# ➕ REGISTRAR
+async def registrar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    hoje = str(date.today())
+    dados = carregar()
+
+    dados.setdefault("producao", {})
+    dados["producao"][hoje] = dados["producao"].get(hoje, 0) + 1
+
+    salvar(dados)
+    await update.message.reply_text("➕ Registro feito para hoje")
+
+# 📈 STATUS
+async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    hoje = str(date.today())
+    dados = carregar()
+
+    feito = dados.get("producao", {}).get(hoje, 0)
+    meta = dados.get("meta", "não definida")
+
+    await update.message.reply_text(
+        f"📅 Data: {hoje}\n"
+        f"✔️ Feito hoje: {feito}\n"
+        f"🎯 Meta diária: {meta}"
+    )
+
+# 👀 VER META
+async def verdiaria(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    dados = carregar()
+    meta = dados.get("meta", "não definida")
+
+    await update.message.reply_text(f"🎯 Meta diária atual: {meta}")
+
+# ▶️ BOT
+app = ApplicationBuilder().token(TOKEN).build()
+
+app.add_handler(CommandHandler("menu", men_
